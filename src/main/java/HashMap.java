@@ -38,4 +38,23 @@ public class HashMap<K, D> {
         }
         return (D) datas[index];
     }
+
+    public int size() {
+        return size;
+    }
+
+    public void remove(K key) {
+        int index = indexOfkey(key);
+
+        if(index == -1) {
+            return ;
+        }
+
+        for(int i=index; i<size; i++) {
+            keys[i] = keys[i+1];
+            datas[i] = datas[i+1];
+        }
+
+        size--;
+    }
 }
