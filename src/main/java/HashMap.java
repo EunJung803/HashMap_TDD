@@ -19,6 +19,13 @@ public class HashMap<K, D> {
     }
 
     public void put(K key, D data) {
+        int index = indexOfkey(key);
+
+        if(index != -1) {
+            datas[index] = data;
+            return ;
+        }
+
         keys[size] = key;
         datas[size] = data;
         size++;
