@@ -1,7 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-
 public class AppTest {
 }
 
