@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class HashMap<K, D> {
     private Object[] keys;
     private Object[] datas;
@@ -56,5 +59,15 @@ public class HashMap<K, D> {
         }
 
         size--;
+    }
+
+    public List<K> keySet() {
+        List<K> keySet = new ArrayList<>();
+
+        for(int i=0; i<size; i++) {
+            keySet.add((K)keys[i]);
+        }
+
+        return keySet;
     }
 }
