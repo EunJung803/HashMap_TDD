@@ -8,8 +8,8 @@ public class HashMap<K, D> {
 
     HashMap() {
         size = 0;
-        keys = new Object[100];
-        datas = new Object[100];
+        keys = new Object[2];
+        datas = new Object[keys.length];
     }
 
     private int indexOfkey(K key) {
@@ -29,9 +29,26 @@ public class HashMap<K, D> {
             return ;
         }
 
+        sizeUpArrWhenFull();
+
         keys[size] = key;
         datas[size] = data;
         size++;
+    }
+
+    private void sizeUpArrWhenFull() {
+        if (isFull()) {
+            sizeUpArr();
+        }
+    }
+
+    private void sizeUpArr() {
+        keys = Util.arr.sizeUp(keys);
+        datas = Util.arr.sizeUp(datas);
+    }
+
+    private boolean isFull() {
+        return size == keys.length;
     }
 
     public D get(K key) {
@@ -53,10 +70,12 @@ public class HashMap<K, D> {
             return ;
         }
 
-        for(int i=index; i<size; i++) {
-            keys[i] = keys[i+1];
-            datas[i] = datas[i+1];
-        }
+//        for(int i=index; i<size; i++) {
+//            keys[i] = keys[i+1];
+//            datas[i] = datas[i+1];
+//        }
+        Util.arr.moveLeft(keys, index + 1, size - 1);
+        Util.arr.moveLeft(datas, index + 1, size - 1);
 
         size--;
     }
